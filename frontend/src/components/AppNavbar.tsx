@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 
 const AppNavbar = () => {
@@ -11,6 +11,9 @@ const AppNavbar = () => {
           <Nav.Link href='/employees'>Employees</Nav.Link>
           <Nav.Link href='/jobs'>Jobs</Nav.Link>
         </Nav>
+        <Button className='justify-content-end' size='sm' href='/'>
+          Logout
+        </Button>
       </Container>
     </Navbar>
   )
