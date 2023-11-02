@@ -4,19 +4,22 @@ import HomePage from './pages/HomePage'
 import EmployeesListPage from './pages/EmployeesListPage'
 import JobsListPage from './pages/JobsListPage'
 import AppNavbar from './components/AppNavbar'
+import { VideoSharingWebsiteProvider } from './context/EmployeeContext'
 
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
-        <AppNavbar />
-        <Routes>
-          <Route path='/' element={<LoginPage />} />
-          <Route path='/home' element={<HomePage />} />
-          <Route path='/employees' element={<EmployeesListPage />} />
-          <Route path='/jobs' element={<JobsListPage />} />
-        </Routes>
-      </BrowserRouter>
+      <VideoSharingWebsiteProvider>
+        <BrowserRouter>
+          <AppNavbar />
+          <Routes>
+            <Route path='/' element={<LoginPage />} />
+            <Route path='/home' element={<HomePage />} />
+            <Route path='/employees' element={<EmployeesListPage />} />
+            <Route path='/jobs' element={<JobsListPage />} />
+          </Routes>
+        </BrowserRouter>
+      </VideoSharingWebsiteProvider>
     </div>
   )
 }

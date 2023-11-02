@@ -2,14 +2,14 @@ import { useContext } from 'react'
 import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap'
 import { EmployeeContext, EmployeContextType } from '../../context/EmployeeContext'
 
-const CreateEmployeeModal = () => {
+const UpdateEmployeeModal = () => {
   const employeeContext = useContext(EmployeeContext) as EmployeContextType
   
-  const showModal = employeeContext.showCreateEmployeeModal
-  const setShowModal = employeeContext.setShowCreateEmployeeModal
+  const showModal = employeeContext.showUpdateEmployeeModal
+  const setShowModal = employeeContext.setShowUpdateEmployeeModal
 
-  const handleAddEmployee = () => {
-    console.log('Adding employee')
+  const handleUpdateEmployee = () => {
+    console.log('Updating employee')
     setShowModal(false)
   }
 
@@ -91,9 +91,9 @@ const CreateEmployeeModal = () => {
                     marginTop: '5px',
                     marginBottom: '5px',
                   }}
-                  onClick={handleAddEmployee}
+                  onClick={handleUpdateEmployee}
                 >
-                  Add Employee
+                  Update Employee
                 </Button>
               </Col>
               <Col md={3}>
@@ -118,4 +118,4 @@ const CreateEmployeeModal = () => {
   )
 }
 
-export default CreateEmployeeModal
+export default UpdateEmployeeModal

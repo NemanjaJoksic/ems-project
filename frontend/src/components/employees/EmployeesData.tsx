@@ -1,8 +1,14 @@
+import { useContext } from 'react'
 import { ListGroup } from 'react-bootstrap'
+import { EmployeeContext, EmployeContextType } from '../../context/EmployeeContext'
 
-const EmployeesData = (props: {setShowModal: (showModal: boolean) => void}) => {
+const EmployeesData = () => {
+  const employeeContext = useContext(EmployeeContext) as EmployeContextType
+  
+  const setShowModal = employeeContext.setShowCreateEmployeeModal
+
   const handleAddEmployee = () => {
-    props.setShowModal(true)
+    setShowModal(true)
   }
 
   return (

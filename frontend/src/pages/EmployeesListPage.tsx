@@ -3,10 +3,17 @@ import EmployeesData from '../components/employees/EmployeesData'
 import EmployeesList from '../components/employees/EmployeesList'
 import EmployeesRelatedLinks from '../components/employees/EmployeesRelatedLinks'
 import CreateEmployeeModal from '../components/employees/CreateEmployeeModal'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { EmployeeContext, EmployeContextType } from '../context/EmployeeContext'
+import EmployeeDetailsModal from '../components/employees/EmployeeDetailsModal'
+import UpdateEmployeeModal from '../components/employees/UpdateEmployeeModal'
 
 const EmployeesListPage = () => {
-  const [showModal, setShowModal] = useState(false)
+  const employeeContext = useContext(EmployeeContext) as EmployeContextType
+
+  const showCreateEmployeeModal = employeeContext.showCreateEmployeeModal
+  const showUpdateEmployeeModal = employeeContext.showUpdateEmployeeModal
+  const showEmployeeDetailsModal = employeeContext.showEmployeeDetailsModal
 
   const PageContent = () => {
     return (
@@ -21,7 +28,7 @@ const EmployeesListPage = () => {
                 marginBottom: '20px',
               }}
             >
-              <EmployeesData setShowModal={setShowModal} />
+              <EmployeesData />
             </Row>
             <Row
               style={{
@@ -48,14 +55,25 @@ const EmployeesListPage = () => {
     )
   }
 
-  if (showModal) {
+  if (showCreateEmployeeModal) {
     return (
       <Container>
         <PageContent />
-        <CreateEmployeeModal
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
+        <CreateEmployeeModal />
+      </Container>
+    )
+  } else if (showEmployeeDetailsModal) {
+    return (
+      <Container>
+        <PageContent />
+        <EmployeeDetailsModal />
+      </Container>
+    )
+  } else if (showUpdateEmployeeModal) {
+    return (
+      <Container>
+        <PageContent />
+        <UpdateEmployeeModal />
       </Container>
     )
   } else {

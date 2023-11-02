@@ -11,7 +11,7 @@ const EmployeesList = () => {
       >
         Employees List
       </Card.Header>
-      <Table>
+      <Table bordered size='sm'>
         <EmployeesListItemHeader />
         <tbody>
           <EmployeesListItem />
