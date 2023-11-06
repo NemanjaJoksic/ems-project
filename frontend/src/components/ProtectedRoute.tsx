@@ -1,12 +1,8 @@
-import React, { ReactNode } from 'react'
-import { Route, Navigate } from 'react-router-dom'
+import { ReactNode } from 'react'
+import { Navigate } from 'react-router-dom'
 import { useUserStore } from '../store/userStore'
 
-type ProtectedRouteProps = {
-  children?: ReactNode
-}
-
-const ProtectedRoute = (props: ProtectedRouteProps) => {
+const ProtectedRoute = (props: {children?: ReactNode}) => {
   const getLoggedInUser = useUserStore((store) => store.actions.getLoggedInUser)
 
   if (getLoggedInUser() === undefined) {
