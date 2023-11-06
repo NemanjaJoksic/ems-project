@@ -7,7 +7,7 @@ export type CounterCardProps = {
   viewAllPath: string
 }
 
-const CounterCard = (props: CounterCardProps) => {
+const CounterCard = (props: CounterCardProps) => {  
   return (
     <Card style={{ background: 'dodgerblue', color: 'white' }}>
       <Card.Header className='text-center'>{props.headerName}</Card.Header>
@@ -15,10 +15,12 @@ const CounterCard = (props: CounterCardProps) => {
         {props.counter}
       </Card.Body>
       <Card.Footer className='text-center'>
-      <Button
-        href={props.viewAllPath}
-        style={{background: 'transparent', width: '100%', border: 'none'}}
-      >{props.footerName}</Button>
+        <Button
+          href={props.viewAllPath}
+          style={{ background: 'transparent', width: '100%', border: 'none' }}
+        >
+          {props.footerName}
+        </Button>
       </Card.Footer>
     </Card>
   )
