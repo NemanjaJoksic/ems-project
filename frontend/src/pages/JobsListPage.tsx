@@ -4,6 +4,7 @@ import JobsRelatedLinks from '../components/jobs/JobsRelatedLinks'
 import JobsList from '../components/jobs/JobsList'
 import { useState } from 'react'
 import CreateJobModal from '../components/jobs/CreateJobModal'
+import ProtectedRoute from '../components/ProtectedRoute'
 
 const JobsListPage = () => {
   const [showModal, setShowModal] = useState(false)
@@ -21,7 +22,7 @@ const JobsListPage = () => {
                 marginBottom: '20px',
               }}
             >
-              <JobsData setShowModal={setShowModal}/>
+              <JobsData setShowModal={setShowModal} />
             </Row>
             <Row
               style={{
@@ -50,13 +51,17 @@ const JobsListPage = () => {
 
   if (showModal) {
     return (
-      <Container>
-        <PageContent />
-        <CreateJobModal showModal={showModal} setShowModal={setShowModal} />
-      </Container>
+      <ProtectedRoute
+        children={
+          <Container>
+            <PageContent />
+            <CreateJobModal showModal={showModal} setShowModal={setShowModal} />
+          </Container>
+        }
+      />
     )
   } else {
-    return <PageContent />
+    return <ProtectedRoute children={<PageContent />} />
   }
 }
 

@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { EmployeeContext, EmployeContextType } from '../context/EmployeeContext'
 import EmployeeDetailsModal from '../components/employees/EmployeeDetailsModal'
 import UpdateEmployeeModal from '../components/employees/UpdateEmployeeModal'
+import ProtectedRoute from '../components/ProtectedRoute'
 
 const EmployeesListPage = () => {
   const employeeContext = useContext(EmployeeContext) as EmployeContextType
@@ -57,27 +58,39 @@ const EmployeesListPage = () => {
 
   if (showCreateEmployeeModal) {
     return (
-      <Container>
-        <PageContent />
-        <CreateEmployeeModal />
-      </Container>
+      <ProtectedRoute
+        children={
+          <Container>
+            <PageContent />
+            <CreateEmployeeModal />
+          </Container>
+        }
+      />
     )
   } else if (showEmployeeDetailsModal) {
     return (
-      <Container>
-        <PageContent />
-        <EmployeeDetailsModal />
-      </Container>
+      <ProtectedRoute
+        children={
+          <Container>
+            <PageContent />
+            <EmployeeDetailsModal />
+          </Container>
+        }
+      />
     )
   } else if (showUpdateEmployeeModal) {
     return (
-      <Container>
-        <PageContent />
-        <UpdateEmployeeModal />
-      </Container>
+      <ProtectedRoute
+        children={
+          <Container>
+            <PageContent />
+            <UpdateEmployeeModal />
+          </Container>
+        }
+      />
     )
   } else {
-    return <PageContent />
+    return <ProtectedRoute children={<PageContent />} />
   }
 }
 
