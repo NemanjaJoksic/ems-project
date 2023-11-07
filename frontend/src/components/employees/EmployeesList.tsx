@@ -1,10 +1,19 @@
 import { Card, Table } from 'react-bootstrap'
 import EmployeesListItem from './EmployeesListItem'
 import EmployeesListItemHeader from './EmployeesListItemHeader'
+import { useEmployeeStore } from '../../store/employeeStore'
+import { useEffect } from 'react'
 
 const EmployeesList = () => {
+  const employees = useEmployeeStore((store) => store.employees)
+  const getEmployees = useEmployeeStore((store) => store.actions.getEmployees)
+
+  useEffect(() => {
+    getEmployees()
+  }, [])
+
   return (
-    <Card style={{border: 'none'}}>
+    <Card style={{ border: 'none' }}>
       <Card.Header
         className='text-center'
         style={{ background: 'black', color: 'white' }}
@@ -14,12 +23,9 @@ const EmployeesList = () => {
       <Table bordered size='sm'>
         <EmployeesListItemHeader />
         <tbody>
-          <EmployeesListItem />
-          <EmployeesListItem />
-          <EmployeesListItem />
-          <EmployeesListItem />
-          <EmployeesListItem />
-          <EmployeesListItem />
+          {employees.map((employee) => (
+            <EmployeesListItem employee={employee} />
+          ))}
         </tbody>
       </Table>
     </Card>
