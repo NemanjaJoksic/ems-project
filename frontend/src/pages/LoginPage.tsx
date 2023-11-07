@@ -4,9 +4,9 @@ import { useUserStore } from '../store/userStore'
 import { Navigate } from 'react-router-dom'
 
 const LoginPage = () => {
-  const getLoggedInUser = useUserStore((store) => store.actions.getLoggedInUser)
+  const isUsedLoggedIn = useUserStore((store) => store.actions.isUsedLoggedIn)
 
-  if (getLoggedInUser() !== undefined) {
+  if (isUsedLoggedIn()) {
     return <Navigate to='/' />
   } else {
     return (

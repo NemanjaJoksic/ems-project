@@ -1,12 +1,19 @@
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useUserStore } from '../store/userStore'
+import { useEffect } from 'react'
 
 const AppNavbar = () => {
   const navigate = useNavigate()
 
-  const getLoggedInUser = useUserStore((store) => store.actions.getLoggedInUser)
+  const user = useUserStore((store) => store.user)
+  const isUsedLoggedIn = useUserStore((store) => store.actions.isUsedLoggedIn)
+  const getUser = useUserStore((store) => store.actions.getUser)
   const logout = useUserStore((store) => store.actions.logout)
+
+  useEffect(() => {
+    getUser()
+  }, [])
 
   return (
     <Navbar style={{ marginBottom: '10px' }}>
@@ -17,18 +24,19 @@ const AppNavbar = () => {
           <Nav.Link href='/employees'>Employees</Nav.Link>
           <Nav.Link href='/jobs'>Jobs</Nav.Link>
         </Nav>
-        <Button
-          hidden={getLoggedInUser() === undefined}
-          className='justify-content-end'
-          size='sm'
-          onClick={() => {
-            logout()
-            navigate('/login')
-            console.log('Logout')
-          }}
-        >
-          Logout
-        </Button>
+        <div hidden={!isUsedLoggedIn()} className='justify-content-end'>
+          {user?.firstName + ' ' + user?.lastName + ' '}
+          <Button
+            size='sm'
+            onClick={() => {
+              logout()
+              navigate('/login')
+              console.log('Logout')
+            }}
+          >
+            Logout
+          </Button>
+        </div>
       </Container>
     </Navbar>
   )
