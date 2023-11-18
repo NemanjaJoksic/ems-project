@@ -5,10 +5,18 @@ import EmployeesListPage from './pages/EmployeesListPage'
 import JobsListPage from './pages/JobsListPage'
 import AppNavbar from './components/AppNavbar'
 import { VideoSharingWebsiteProvider } from './context/EmployeeContext'
+import { useCounterStore } from './store/counterStore'
+import { Button } from 'react-bootstrap'
 
 const App = () => {
+  const counter = useCounterStore(store => store.counter)
+  const increment = useCounterStore(store => store.actions.increment)
+
   return (
     <div>
+      {/* counter: {counter}
+      <Button onClick={() => increment()} >Increment</Button> */}
+
       <VideoSharingWebsiteProvider>
         <BrowserRouter>
           <AppNavbar />
